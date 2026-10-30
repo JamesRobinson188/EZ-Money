@@ -1,0 +1,18 @@
+# Starts EZ-Money with Docker Compose at boot.
+# Install: sudo cp deploy/ez-money.service /etc/systemd/system/ && sudo systemctl enable --now ez-money
+[Unit]
+Description=EZ-Money overnight trader
+Requires=docker.service
+After=docker.service network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+WorkingDirectory=/opt/ez-money
+ExecStart=/usr/bin/docker compose up -d --build
+ExecStop=/usr/bin/docker compose down
+TimeoutStopSec=150
+
+[Install]
+WantedBy=multi-user.target
