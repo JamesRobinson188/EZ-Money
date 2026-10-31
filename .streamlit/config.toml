@@ -1,0 +1,26 @@
+[server]
+headless = true
+
+[browser]
+gatherUsageStats = false
+
+[theme]
+base = "dark"
+primaryColor = "#F2B13C"
+backgroundColor = "#0D1117"
+secondaryBackgroundColor = "#151A21"
+textColor = "#E8ECF2"
+borderColor = "#273040"
+linkColor = "#7CB7FF"
+greenColor = "#46D39A"
+orangeColor = "#FF8F4D"
+blueColor = "#7CB7FF"
+yellowColor = "#F2B13C"
+baseRadius = "10px"
+font = "IBM Plex Sans:https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+codeFont = "IBM Plex Mono:https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap"
+dataframeBorderColor = "#273040"
+dataframeHeaderBackgroundColor = "#151A21"
+
+[client]
+toolbarMode = "viewer"

@@ -1,0 +1,27 @@
+services:
+  trader:
+    build: .
+    image: ez-money:latest
+    command: ["ez-money", "run"]
+    env_file: .env
+    environment:
+      DATA_DIR: /app/data
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
+    # Give an in-flight order time to finish on shutdown.
+    stop_grace_period: 2m
+
+  dashboard:
+    image: ez-money:latest
+    depends_on: [trader]
+    command: ["streamlit", "run", "dashboard/app.py", "--server.address=0.0.0.0", "--server.port=8501"]
+    env_file: .env
+    environment:
+      DATA_DIR: /app/data
+    volumes:
+      - ./data:/app/data
+    # Only reachable from the server itself. Use an SSH tunnel to open it remotely.
+    ports:
+      - "127.0.0.1:8501:8501"
+    restart: unless-stopped
